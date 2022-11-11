@@ -1,12 +1,18 @@
-<article id="<%= dom_id article %>" class="container">
-  <header>
+<article id="<%= dom_id article %>" class="container article">
+  <header class="text-center">
     <h1 class=""><%= article.title %></h1>
     <p class="tagline">
       <%= article.sub_title %>
     </p>
   </header>
   <hr>
+  <div class="row">
+    <div class="col-10">
+      <%= raw article.content %>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
 
-  <%= raw article.content %>
 
 </article>
