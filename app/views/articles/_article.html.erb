@@ -1,22 +1,12 @@
-<div id="<%= dom_id article %>">
-  <p>
-    <strong>Title:</strong>
-    <%= article.title %>
-  </p>
+<article id="<%= dom_id article %>" class="container">
+  <header>
+    <h1 class=""><%= article.title %></h1>
+    <p class="tagline">
+      <%= article.sub_title %>
+    </p>
+  </header>
+  <hr>
 
-  <p>
-    <strong>Sub title:</strong>
-    <%= article.sub_title %>
-  </p>
+  <%= raw article.content %>
 
-  <p>
-    <strong>Content:</strong>
-    <%= article.content %>
-  </p>
-
-  <p>
-    <strong>Seo description:</strong>
-    <%= article.seo_description %>
-  </p>
-
-</div>
+</article>

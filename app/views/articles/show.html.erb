@@ -1,6 +1,10 @@
+<%= render "layouts/navigation" %>
+
 <p style="color: green"><%= notice %></p>
 
-<%= render @article %>
+<main>
+  <%= render @article %>
+</main>
 
 <div>
   <%= link_to "Edit this article", edit_article_path(@article) %> |

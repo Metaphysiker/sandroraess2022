@@ -6,7 +6,10 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :sub_title %>
-    <%= f.input :content %>
+    <%#= f.input :content %>
+  <div data-controller="tinymce">
+    <%= f.text_area :content, class: "tinymce-textarea", data: {"tinymce-target": "textarea"} %>
+  </div>
     <%= f.input :seo_description %>
   </div>
 
