@@ -32,3 +32,8 @@
 de:
   hello: "Hello world"
   application_name: "Sandro Räss"
+  time:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%d.%m.%Y"
+      long: "%B %d, %Y"
