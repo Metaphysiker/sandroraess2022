@@ -1,0 +1,6 @@
+de:
+  activerecord:
+    models:
+      article:
+        one: Artikel
+        other: Artikel

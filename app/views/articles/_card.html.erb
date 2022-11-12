@@ -1,0 +1,13 @@
+<div class="card">
+  <% if article.featured_image.representable? %>
+      <%= image_tag article.featured_image, class: "card-img-top"%>
+  <% end %>
+  <div class="card-body">
+    <h2 class="card-title"><%= article.title %></h2>
+    <p class="card-text"><%= article.sub_title %></p>
+    <p class="card-text"><%= article.seo_description %></p>
+
+    <%= link_to "Lesen", article, class: "btn btn-primary" %>
+
+  </div>
+</div>
