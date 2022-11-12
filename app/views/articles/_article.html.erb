@@ -12,7 +12,7 @@
     <div class="container">
     <header class="my-3">
       <h1 class="text-center"><%= article.title %></h1>
-      <p class="tagline text-center">
+      <p class="lead text-center">
         <%= article.sub_title %>
       </p>
     </header>
@@ -23,11 +23,16 @@
     <div class="row">
       <div class="col-12">
         <p>
-          Sandro Räss - <%= l(article.created_at, format: :short) %>
+
+        <small class="text-muted">
+          Sandro Räss
+           -
+          <%= l(article.created_at, format: :short) %>
+        </small>
         </p>
         <hr>
         <div class="content">
-          <%= raw article.content %>
+          <%= raw article.modified_content %>
         </div>
       </div>
     </div>

@@ -37,3 +37,10 @@ de:
       default: "%Y-%m-%d"
       short: "%d.%m.%Y"
       long: "%B %d, %Y"
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    order:
+      - :day
+      - :month
+      - :year

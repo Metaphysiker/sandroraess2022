@@ -3,7 +3,9 @@
 <p style="color: green"><%= notice %></p>
 
 <main>
-  <%= render @article %>
+  <% cache @article do %>
+    <%= render @article %>
+  <% end %>
 </main>
 
 
@@ -15,3 +17,5 @@
   <%= button_to "Destroy this article", @article, method: :delete %>
 </div>
 <% end %>
+
+<%= render "layouts/footer" %>

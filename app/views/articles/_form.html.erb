@@ -8,6 +8,8 @@
 
     <%= f.input :title %>
     <%= f.input :sub_title %>
+    <%= f.input :created_at %>
+
     <%#= f.input :content %>
   <div data-controller="tinymce">
     <%= f.text_area :content, class: "tinymce-textarea", data: {"tinymce-target": "textarea"} %>
