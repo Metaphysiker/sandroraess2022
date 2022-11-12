@@ -1,4 +1,14 @@
 <%= render "layouts/navigation" %>
 <div class="container">
-  <h1>Welcome</h1>
+  <h1 class="text-center my-3">Willkommen</h1>
+  <div id="articles">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @articles.each do |article| %>
+      <div class="col">
+        <%= render "articles/card", article: article %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+<%= render "layouts/footer" %>

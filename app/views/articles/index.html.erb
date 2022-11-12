@@ -13,8 +13,9 @@
     </div>
     <% end %>
   </div>
-
 </div>
 
-<%= link_to "New article", new_article_path %>
+<% if policy(Article).new? %>
+  <%= link_to "New article", new_article_path %>
+<% end %>
 </div>

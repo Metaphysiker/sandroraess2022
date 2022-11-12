@@ -1,0 +1,16 @@
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <div class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to 'Edit account', edit_user_registration_path, class: "nav-link px-2 text-muted" %></li>
+          <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete', class: "nav-link px-2 text-muted"  %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: "nav-link px-2 text-muted"  %></li>
+          <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: "nav-link px-2 text-muted"  %></li>
+        <% end %>
+      </ul>
+      <p class="text-center text-muted"><%= t("application_name") %></p>
+    </div>
+  </div>
+</footer>
