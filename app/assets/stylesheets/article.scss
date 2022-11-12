@@ -1,11 +1,22 @@
+@import "variables";
+
 article {
   line-height: 1.8;
+  color: map-get($main-colors, "eclipse-color");
+  font-size: 1.1rem;
+
+
+  .content {
+    //background-color: map-get($main-colors, "c-color");
+  }
+
   h1 {
     //text-shadow: 0px 2px 0 rgba(0,0,0,0.2);
     //text-shadow: 4px 4px 5px red;
     letter-spacing: 1px;
     //font-style: italic;
     font-weight: 500;
+    //color: map-get($main-colors, "eclipse-color");
     //text-transform: uppercase;
     //text-decoration: underline;
     //text-indent: 1%;
@@ -16,6 +27,8 @@ article {
     letter-spacing: 1px;
     //font-style: italic;
     font-weight: 500;
+    //color: map-get($main-colors, "a-color");
+
     //text-transform: uppercase;
     //text-decoration: underline;
     //text-indent: 1%;
