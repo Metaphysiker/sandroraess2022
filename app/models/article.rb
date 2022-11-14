@@ -11,31 +11,44 @@ class Article < ApplicationRecord
 
   def modify_content
 
-    h1 = Tree::TreeNode.new('h1', self.title)
+    #h1 = Tree::TreeNode.new('h1', self.title)
 
-    h1 << Tree::TreeNode.new("CHILD2", "Child2 Content")
+    #h1 << Tree::TreeNode.new("CHILD2", "Child2 Content")
 
-    h1.print_tree
+    #h1.print_tree
 
     puts "treenode"
-    puts h1
+    #puts h1
 
 
     doc = Nokogiri::HTML.fragment(self.content)
     table_of_content = ""
 
-    doc.css('h1', 'h2', 'h3', 'h4', 'h5', 'h6').each do |node|
+    doc.css("h1, h2, h3, h4, h5, h6").each do |node|
+
+      times_of_space = node.name.delete("^0-9").to_i
+      puts "node"
+      #puts node.attributes
+      #puts node.methods
+      puts node.name
+      puts node.children.count
+      puts node.children[0].content
       node['id'] = node.content.parameterize
+
+      times_of_space_string = ""
+      times_of_space.times do |time|
+          times_of_space_string += "&nbsp;&nbsp;&nbsp;&nbsp;"
+      end
 link = <<~EOF
       <a href="##{node.content.parameterize}">#{node.content}</a>
       <br>
 EOF
 
-      table_of_content = table_of_content + link
+      table_of_content = table_of_content + times_of_space_string + link
     end
 
     #https://developer.squareup.com/blog/challenge-table-of-contents-generator/
-    self.modified_content = table_of_content + doc.to_html
+    self.modified_content = table_of_content + "<hr>" + doc.to_html
   end
 
 end
