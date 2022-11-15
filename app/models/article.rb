@@ -35,10 +35,6 @@ class Article < ApplicationRecord
 
       new_node = Tree::TreeNode.new(node.content, level)
 
-      puts "comparison"
-      puts parent_node.content
-      puts level
-
       if parent_node.content == level
 
         if parent_node.parent.blank?
@@ -56,14 +52,8 @@ class Article < ApplicationRecord
         parent_node << new_node
       elsif parent_node.content > level
 
-        #(parent_node.content - level + 1).times do
-        #  parent_node = parent_node.parent
-        #end
-
         while parent_node.content + 1 != level
-          puts "inside while"
-          puts parent_node.content
-          puts level
+
           if parent_node.parent.blank?
             parent_node = root
             break
@@ -96,7 +86,6 @@ class Article < ApplicationRecord
 
       link = <<~EOF
             <a href="##{child.name.parameterize}">#{child.name}</a>
-            <br>
       EOF
 
       list = list + "<li>" +  link + "</li>"
