@@ -1,4 +1,4 @@
-<div class="card h-100">
+<div class="card h-100 border-0 shadow-lg">
   <% if article.featured_image.representable? %>
       <%= image_tag article.featured_image, class: "card-img-top"%>
   <% end %>
@@ -12,7 +12,7 @@
   </div>
   <div class="card-footer bg-white border-top-0">
     <div class="d-grid gap-2">
-      <%= link_to "Zum Artikel", article, class: "btn btn-primary" %>
+      <%= link_to t("read"), article, class: "btn btn-primary mb-2" %>
     </div>
   </div>
 </div>

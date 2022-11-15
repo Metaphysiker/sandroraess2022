@@ -1,0 +1,15 @@
+<div id="articles" class="my-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% articles.each do |article| %>
+    <div class="col">
+      <% cache article do %>
+        <%= render "articles/card", article: article %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<% if policy(Article).new? %>
+  <%= link_to "New article", new_article_path %>
+<% end %>

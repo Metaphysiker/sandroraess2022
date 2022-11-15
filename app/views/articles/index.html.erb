@@ -3,23 +3,9 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="container">
-  <h1><%= Article.model_name.human(count: 2) %></h1>
+  <h1 class="text-center"><%= Article.model_name.human(count: 2) %></h1>
 
-<div id="articles">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% @articles.each do |article| %>
-    <div class="col">
-      <% cache article do %>
-        <%= render "articles/card", article: article %>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-</div>
-
-<% if policy(Article).new? %>
-  <%= link_to "New article", new_article_path %>
-<% end %>
+  <%= render "articles/articles", articles: Article.all %>
 </div>
 
 <%= render "layouts/footer" %>

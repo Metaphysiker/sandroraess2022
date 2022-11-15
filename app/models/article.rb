@@ -96,7 +96,7 @@ class Article < ApplicationRecord
     end
 
 
-    return "<ol>" + list + "</ol>"
+    return "<ul>" + list + "</ul>"
   end
 
 

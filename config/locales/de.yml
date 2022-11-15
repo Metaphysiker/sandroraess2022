@@ -32,6 +32,10 @@
 de:
   hello: "Hello world"
   application_name: "Sandro Räss"
+  about_me: "Über mich"
+  contact: "Kontakt"
+  support: "Unterstützen"
+  read: "Lesen"
   time:
     formats:
       default: "%Y-%m-%d"

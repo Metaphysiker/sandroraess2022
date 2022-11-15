@@ -5,6 +5,9 @@ article {
   //color: map-get($main-colors, "eclipse-color");
   font-size: 1.1rem;
 
+  ul {
+    list-style-type: disc;
+  }
 
   .content {
     //background-color: map-get($main-colors, "c-color");
