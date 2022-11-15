@@ -20,44 +20,48 @@ class Article < ApplicationRecord
     doc = Nokogiri::HTML.fragment(self.content)
     table_of_content = ""
 
-    root = Tree::TreeNode.new(self.titlem, 1)
-    current_heading_level = 1
+    root = Tree::TreeNode.new(self.title, 1)
+
     current_node = root
+    parent_node = root
     last_node = root
+    current_level = 1
 
 
-    doc.css("h1, h2, h3, h4, h5, h6").each do |node|
-      heading_level = node.name.delete("^0-9").to_i
-      new_node = Tree::TreeNode.new(node.content, heading_level)
-      last_node = new_node
+    doc.css("h2, h3, h4, h5, h6").each do |node|
 
+      level = node.name.delete("^0-9").to_i
 
+      new_node = Tree::TreeNode.new(node.content, level)
 
-      puts node.content
-      puts "heading_level " + heading_level.to_s
-      puts "current_heading_level " + current_heading_level.to_s
+      puts "comparison"
+      puts parent_node.content
+      puts level
 
-      if heading_level == current_heading_level
-        current_node << new_node
-      elsif heading_level > current_heading_level
-        last_node << new_node
-        current_node = last_node
+      if parent_node.content == level
 
-        current_heading_level = heading_level
-      elsif heading_level < current_heading_level
-        last_node.parent << new_node
-        current_node = last_node.parent
+        if parent_node.parent.blank?
+          root << new_node
+          parent_node = root
+        else
+          parent_node.parent << new_node
+          parent_node = parent_node.parent
+        end
 
-        current_heading_level = heading_level
+      elsif parent_node.content + 1 == level
+        parent_node << new_node
+      elsif parent_node.content + 2 == level
+        parent_node = last_node
+        puts last_node
+        parent_node << new_node
       end
 
-      #root << new_node
-
+      current_level = level
+      last_node = new_node
 
     end
 
     root.print_tree
-
 
     self.modified_content = table_of_content + "<hr>" + doc.to_html
 
