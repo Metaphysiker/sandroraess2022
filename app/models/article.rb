@@ -20,19 +20,38 @@ class Article < ApplicationRecord
     doc = Nokogiri::HTML.fragment(self.content)
     table_of_content = ""
 
-    root = Tree::TreeNode.new('root', self.title)
+    root = Tree::TreeNode.new(self.titlem, 1)
     current_heading_level = 1
     current_node = root
     last_node = root
-    toc_number = 1
+
 
     doc.css("h1, h2, h3, h4, h5, h6").each do |node|
-      new_node = Tree::TreeNode.new(toc_number, node.content)
       heading_level = node.name.delete("^0-9").to_i
+      new_node = Tree::TreeNode.new(node.content, heading_level)
+      last_node = new_node
 
-      root << new_node
 
-      toc_number += 1
+
+      puts node.content
+      puts "heading_level " + heading_level.to_s
+      puts "current_heading_level " + current_heading_level.to_s
+
+      if heading_level == current_heading_level
+        current_node << new_node
+      elsif heading_level > current_heading_level
+        last_node << new_node
+        current_node = last_node
+
+        current_heading_level = heading_level
+      elsif heading_level < current_heading_level
+        last_node.parent << new_node
+        current_node = last_node.parent
+
+        current_heading_level = heading_level
+      end
+
+      #root << new_node
 
 
     end
