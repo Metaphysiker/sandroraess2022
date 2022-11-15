@@ -8,8 +8,44 @@ class Article < ApplicationRecord
 
   before_save :modify_content
 
+  def add_to_tree
+
+
+
+
+  end
 
   def modify_content
+
+    doc = Nokogiri::HTML.fragment(self.content)
+    table_of_content = ""
+
+    root = Tree::TreeNode.new('root', self.title)
+    current_heading_level = 1
+    current_node = root
+    last_node = root
+    toc_number = 1
+
+    doc.css("h1, h2, h3, h4, h5, h6").each do |node|
+      new_node = Tree::TreeNode.new(toc_number, node.content)
+      heading_level = node.name.delete("^0-9").to_i
+
+      root << new_node
+
+      toc_number += 1
+
+
+    end
+
+    root.print_tree
+
+
+    self.modified_content = table_of_content + "<hr>" + doc.to_html
+
+  end
+
+
+  def modify_content_old
 
     root = Tree::TreeNode.new('root', self.title)
 
@@ -29,34 +65,34 @@ class Article < ApplicationRecord
     last_node = root
 
     doc.css("h1, h2, h3, h4, h5, h6").each do |node|
+      new_node = Tree::TreeNode.new(node.content, node.content)
+
 
       heading_level = node.name.delete("^0-9").to_i
       puts heading_level
+      puts current_heading_level
+      puts heading_level == (current_heading_level + 1)
 
-      #if heading_level is the same as current_level add to children of last node
-      if heading_level == current_heading_level
-        new_node = Tree::TreeNode.new(node.content, node.content)
-        last_node << new_node
-        #current_node = new_node
-        #last_node = new_node
-        #current_heading_level = heading_level
 
-      #
-      elsif heading_level < current_heading_level
-        new_node = Tree::TreeNode.new(node.content, node.content)
+      if heading_level == (current_heading_level + 1)
+        current_node << new_node
 
-        last_node << new_node
-        current_node = new_node
+      elsif heading_level > (current_heading_level + 1)
+        current_node = last_node
 
-        current_heading_level = heading_level
+        current_node << new_node
+
+        current_heading_level = heading_level - 1
 
       else
-        new_node = Tree::TreeNode.new(node.content, node.content)
 
         current_node = root
         current_node << new_node
-        current_heading_level = heading_level
+        current_heading_level = heading_level - 1
       end
+
+      last_node = new_node
+
 
 
       times_of_space = node.name.delete("^0-9").to_i
