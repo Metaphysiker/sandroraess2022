@@ -29,6 +29,7 @@ class Article < ApplicationRecord
 
 
     doc.css("h2, h3, h4, h5, h6").each do |node|
+      node['id'] = node.content.parameterize
 
       level = node.name.delete("^0-9").to_i
 
@@ -52,7 +53,26 @@ class Article < ApplicationRecord
         parent_node << new_node
       elsif parent_node.content + 2 == level
         parent_node = last_node
-        puts last_node
+        parent_node << new_node
+      elsif parent_node.content > level
+
+        #(parent_node.content - level + 1).times do
+        #  parent_node = parent_node.parent
+        #end
+
+        while parent_node.content + 1 != level
+          puts "inside while"
+          puts parent_node.content
+          puts level
+          if parent_node.parent.blank?
+            parent_node = root
+            break
+          end
+
+          parent_node = parent_node.parent
+
+        end
+
         parent_node << new_node
       end
 
@@ -63,8 +83,31 @@ class Article < ApplicationRecord
 
     root.print_tree
 
-    self.modified_content = table_of_content + "<hr>" + doc.to_html
+    self.modified_content = tree_to_toc(root) + "<hr>" + doc.to_html
 
+  end
+
+
+  def tree_to_toc(tree)
+
+    list = ""
+
+    tree.children.each do |child|
+
+      link = <<~EOF
+            <a href="##{child.name.parameterize}">#{child.name}</a>
+            <br>
+      EOF
+
+      list = list + "<li>" +  link + "</li>"
+
+      if child.children.present?
+        list = list + tree_to_toc(child)
+      end
+    end
+
+
+    return "<ol>" + list + "</ol>"
   end
 
 
@@ -89,6 +132,7 @@ class Article < ApplicationRecord
 
     doc.css("h1, h2, h3, h4, h5, h6").each do |node|
       new_node = Tree::TreeNode.new(node.content, node.content)
+      node['id'] = node.name.parameterize
 
 
       heading_level = node.name.delete("^0-9").to_i
