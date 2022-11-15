@@ -1,5 +1,15 @@
 @import "variables";
 
+.article_card {
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+}
+
 article {
   line-height: 1.8;
   //color: map-get($main-colors, "eclipse-color");

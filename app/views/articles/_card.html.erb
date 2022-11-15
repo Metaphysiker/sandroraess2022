@@ -1,4 +1,4 @@
-<div class="card h-100 border-0 shadow-lg">
+<div class="card h-100 border-0 shadow-lg article_card">
   <% if article.featured_image.representable? %>
       <%= image_tag article.featured_image, class: "card-img-top"%>
   <% end %>
@@ -7,6 +7,7 @@
       <%= l(article.created_at, format: :short) %>
     </small>
     <h2 class="card-title"><%= article.title %></h2>
+    <hr>
     <p class="card-text"><%= article.sub_title %></p>
 
   </div>
