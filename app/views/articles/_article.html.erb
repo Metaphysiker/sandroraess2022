@@ -1,3 +1,4 @@
+<% content_for :json_ld do %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -8,7 +9,7 @@
   },
   "headline": "<%= article.title %>",
   "description": "<%= article.seo_description %>",
-  "image": "<%= rails_blob_url(article.featured_image) %>",
+  "image": "<%= rails_blob_url(article.featured_image) if article.featured_image.attached? %>",
   "author": {
     "@type": "Person",
     "name": "Sandro Räss"
@@ -17,6 +18,9 @@
   "dateModified": "<%= article.updated_at.strftime("%F") %>"
 }
 </script>
+<% end %>
+
+
 
 <article id="<%= dom_id article %>" class="article">
   <% if article.featured_image.representable? %>
