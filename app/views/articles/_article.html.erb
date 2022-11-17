@@ -19,6 +19,11 @@
 </script>
 
 
+<% content_for :headseo do %>
+  <title>A simple page</title>
+<% end %>
+
+
 <article id="<%= dom_id article %>" class="article">
   <% if article.featured_image.representable? %>
     <div class="container">
