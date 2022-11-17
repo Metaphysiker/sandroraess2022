@@ -10,6 +10,8 @@ gem 'route_translator'
 gem 'friendly_id', '~> 5.4.0'
 gem 'rubytree'
 gem 'meta-tags'
+gem 'mini_racer'
+gem "terser"
 
 
 

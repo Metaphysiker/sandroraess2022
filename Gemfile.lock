@@ -95,6 +95,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.11.0)
+    execjs (2.8.1)
     ffi (1.15.5)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
@@ -115,6 +116,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.2)
+    libv8-node (16.10.0.0-x86_64-linux)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -127,6 +129,8 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
+    mini_racer (0.6.3)
+      libv8-node (~> 16.10.0.0)
     minitest (5.16.3)
     msgpack (1.6.0)
     net-imap (0.3.1)
@@ -218,6 +222,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.1.1)
       railties (>= 6.0.0)
+    terser (1.1.12)
+      execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.0)
@@ -259,6 +265,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   meta-tags
+  mini_racer
   pg (~> 1.1)
   puma (~> 5.0)
   pundit
@@ -270,6 +277,7 @@ DEPENDENCIES
   simple_form
   sprockets-rails
   stimulus-rails
+  terser
   turbo-rails
   tzinfo-data
   web-console
