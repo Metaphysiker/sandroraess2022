@@ -1,5 +1,33 @@
 <%= render "layouts/navigation" %>
 
+<% content_for :canonical do %>
+  <link rel="canonical" href="<%= article_url(@article) %>" />
+<% end %>
+
+<% content_for :json_ld do %>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "<%= article_url(@article) %>"
+  },
+  "headline": "<%= @article.title %>",
+  "description": "<%= @article.seo_description %>",
+  "image": "<%= rails_blob_url(@article.featured_image) if @article.featured_image.attached? %>",
+  "author": {
+    "@type": "Person",
+    "name": "Sandro Räss"
+  },
+  "datePublished": "<%= @article.created_at.strftime("%F") %>",
+  "dateModified": "<%= @article.updated_at.strftime("%F") %>"
+}
+</script>
+
+<% end %>
+
 <p style="color: green"><%= notice %></p>
 
 <main>
