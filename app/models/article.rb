@@ -11,8 +11,6 @@ class Article < ApplicationRecord
   def add_to_tree
 
 
-
-
   end
 
   def modify_content
@@ -73,7 +71,12 @@ class Article < ApplicationRecord
 
     root.print_tree
 
-    self.modified_content = tree_to_toc(root) + "<hr>" + doc.to_html
+    doc.css("#toc").each do |node|
+      node.inner_html = "<hr>" + tree_to_toc(root) + "<hr>"
+    end
+
+
+    self.modified_content = doc.to_html
 
   end
 
