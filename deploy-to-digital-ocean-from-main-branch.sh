@@ -18,7 +18,7 @@ ssh deploy@159.223.30.119 << EOF
 EOF
 
 ssh root@159.223.30.119 << EOF
-  cd /home/sandro/sandroraess2022/
+  cd /home/deploy/sandroraess2022/
   sudo service nginx restart
 EOF
 
