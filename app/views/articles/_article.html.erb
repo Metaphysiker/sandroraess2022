@@ -1,3 +1,5 @@
+
+<% content_for :headseo do %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -17,10 +19,6 @@
   "dateModified": "<%= article.updated_at.strftime("%F") %>"
 }
 </script>
-
-
-<% content_for :headseo do %>
-  <title>A simple page</title>
 <% end %>
 
 

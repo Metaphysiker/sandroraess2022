@@ -9,6 +9,9 @@ class ArticlesController < ApplicationController
   # GET /articles/1 or /articles/1.json
   def show
 
+    @page_title       = @article.title
+    @page_description = @article.seo_description
+
   end
 
   # GET /articles/new
