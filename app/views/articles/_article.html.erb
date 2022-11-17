@@ -1,5 +1,3 @@
-<% content_for :jsonld do %>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -19,7 +17,7 @@
   "dateModified": "<%= article.updated_at.strftime("%F") %>"
 }
 </script>
-<% end %>
+
 
 <article id="<%= dom_id article %>" class="article">
   <% if article.featured_image.representable? %>
