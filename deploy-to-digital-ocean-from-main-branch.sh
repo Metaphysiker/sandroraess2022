@@ -13,7 +13,6 @@ ssh deploy@159.223.30.119 << EOF
   bundle config set --local deployment 'true'
   bundle config set --local without 'development test'
   bundle install
-  yarn install
   RAILS_ENV=production rails db:migrate
 EOF
 
