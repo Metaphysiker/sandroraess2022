@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: sandroraess2022_production
-  username: sandroraess2022
+  username: deploy
   password: <%= ENV["SANDRORAESS2022_DATABASE_PASSWORD"] %>
