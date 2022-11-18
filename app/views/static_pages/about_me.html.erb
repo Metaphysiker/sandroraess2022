@@ -1,5 +1,24 @@
 <%= render "layouts/navigation" %>
 
+<% content_for :json_ld do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "Räss",
+  "url": "https://sandro-raess.ch/",
+  "image": "<%= image_url "sandro-raess-profil.webp" %>",
+  "sameAs": "https://sandro-raess.ch/",
+  "jobTitle": "Web-Entwickler",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Vegane Gesellschaft Schweiz"
+  }
+}
+</script>
+<% end %>
+
+
 <div class="container py-4">
   <!--
   <h1 class="text-center my-3">Über mich</h1>

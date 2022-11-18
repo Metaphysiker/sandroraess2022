@@ -19,7 +19,8 @@
   "image": "<%= rails_blob_url(@article.featured_image) if @article.featured_image.attached? %>",
   "author": {
     "@type": "Person",
-    "name": "Sandro Räss"
+    "name": "Sandro Räss",
+    "url": "<%= about_me_url %>"
   },
   "datePublished": "<%= @article.created_at.strftime("%F") %>",
   "dateModified": "<%= @article.updated_at.strftime("%F") %>"
