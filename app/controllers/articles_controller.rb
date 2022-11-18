@@ -28,6 +28,9 @@ class ArticlesController < ApplicationController
               title: :title,
               description: :description,
               card:  "summary_large_image",
+              card: {
+                image: featured_image_url
+              },
               image: featured_image_url,
               url: article_url(@article)
             }
