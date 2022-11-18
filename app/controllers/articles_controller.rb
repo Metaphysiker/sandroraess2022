@@ -27,8 +27,9 @@ class ArticlesController < ApplicationController
             twitter: {
               title: :title,
               description: :description,
-              card:  "summary_large_image",
+              #card:  "summary_large_image",
               card: {
+                _: "summary_large_image",
                 image: featured_image_url
               },
               image: featured_image_url,
