@@ -1,3 +1,6 @@
 de:
   routes:
     articles: artikel
+    about_me: ueber-mich
+    contact: kontakt
+    support: unterstuetzen
