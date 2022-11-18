@@ -9,8 +9,22 @@ class ArticlesController < ApplicationController
   # GET /articles/1 or /articles/1.json
   def show
 
-    @page_title       = @article.title
-    @page_description = @article.seo_description
+    featured_image_url = @article.featured_image.attached? ? rails_blob_url(@article.featured_image) : ""
+
+    set_meta_tags title: @article.title,
+              description: @article.seo_description,
+              og: {
+                title:    :title,
+                type:     'article',
+                url:      article_url(@article),
+                image:    featured_image_url,
+            },
+            article: {
+              published_time:    @article.created_at.iso8601,
+              modified_time:     @article.updated_at.iso8601,
+            }
+
+
 
   end
 
