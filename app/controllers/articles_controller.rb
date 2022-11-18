@@ -14,7 +14,8 @@ class ArticlesController < ApplicationController
     set_meta_tags title: @article.title,
               description: @article.seo_description,
               og: {
-                title:    :title,
+                title: :title,
+                description: :description,
                 type:     'article',
                 url:      article_url(@article),
                 image:    featured_image_url,
@@ -22,6 +23,14 @@ class ArticlesController < ApplicationController
             article: {
               published_time:    @article.created_at.iso8601,
               modified_time:     @article.updated_at.iso8601,
+            },
+            twitter: {
+              title: :title,
+              description: :description,
+              card:  "photo",
+              image: {
+                _:      featured_image_url
+              }
             }
 
 
