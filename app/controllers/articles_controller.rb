@@ -4,6 +4,9 @@ class ArticlesController < ApplicationController
   # GET /articles or /articles.json
   def index
     @articles = Article.all
+
+    set_meta_tags title: "Meine Artikel",
+              description: "Artikel von Sandro Räss"
   end
 
   # GET /articles/1 or /articles/1.json

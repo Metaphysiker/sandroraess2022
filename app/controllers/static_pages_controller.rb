@@ -8,11 +8,13 @@ class StaticPagesController < ApplicationController
   end
 
   def about_me
-
+    set_meta_tags title: "Über mich",
+              description: "Sandro Räss"
   end
 
   def contact
-
+    set_meta_tags title: "Kontakt",
+              description: "Kontakt"
   end
 
   def support

@@ -1,6 +1,6 @@
 <div id="articles" class="my-5">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-    <% articles.each do |article| %>
+    <% articles.order(created_at: :desc).each do |article| %>
     <div class="col">
       <% cache article do %>
         <%= render "articles/card", article: article %>
