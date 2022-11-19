@@ -16,6 +16,7 @@
   },
   "headline": "<%= @article.title %>",
   "description": "<%= @article.seo_description %>",
+  "articleBody": "<%= strip_tags(@article.content) %>",
   "image": "<%= rails_blob_url(@article.featured_image) if @article.featured_image.attached? %>",
   "author": {
     "@type": "Person",
