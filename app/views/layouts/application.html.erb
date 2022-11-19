@@ -22,6 +22,8 @@
     <%= yield :canonical %>
     <%= yield :json_ld %>
 
+    <%= favicon_link_tag asset_path('favicon.png') %>
+
   </head>
 
   <body class="d-flex flex-column h-100 bg-b-color">
