@@ -19,23 +19,23 @@
     </div>
   </div>
   <div class="container">
+    <p>
+    <small class="text-muted">
+      Sandro Räss
+       -
+      <%= l(article.created_at, format: :short) %>
+    </small>
+    </p>
+    <hr>
     <div class="row">
-      <div class="col-12 col-md-8">
-        <p>
+      <div class="col-12 col-lg-8">
 
-        <small class="text-muted">
-          Sandro Räss
-           -
-          <%= l(article.created_at, format: :short) %>
-        </small>
-        </p>
-        <hr>
         <div class="content">
           <%= raw article.modified_content %>
         </div>
       </div>
-      <div class="col-12 col-md-4">
-        card
+      <div class="col-12 col-lg-4">
+        <%= render "static_pages/about_me_card" %>
       </div>
     </div>
   </div>

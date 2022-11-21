@@ -33,6 +33,7 @@ de:
   hello: "Hello world"
   application_name: "Sandro Räss"
   about_me: "Über mich"
+  about_me_content_html: "<strong>Sandro Räss</strong> ist Philosoph, Front-End-Entwickler und Veganer."
   contact: "Kontakt"
   support: "Unterstützen"
   read: "Lesen"
