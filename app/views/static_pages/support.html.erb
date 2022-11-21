@@ -1,7 +1,108 @@
 <%= render "layouts/navigation" %>
 
 <div class="container">
-  <h1 class="text-center my-3">Über mich</h1>
+  <h1 class="text-center my-3">Unterstützen</h1>
+  <div class="container text-center py-3">
+  <div class="rnw-widget-container"></div>
+  <script src="https://tamaro.raisenow.com/stift-16e8/latest/widget.js"></script>
+</div>
 </div>
 
 <%= render "layouts/footer" %>
+
+<script>
+
+  //var height = 500;
+
+  //raiseNow runWidghet
+  window.rnw.tamaro.runWidget('.rnw-widget-container', {
+    testMode: <%= Rails.env.development? %>,
+    translations: {
+      de: {
+        title: "Futtersack-Spende für Wizard",
+        stored_customer_patenschaft: "Ich möchte eine Patenschaft für Wizard übernehmen und so dauerhaft helfen, seine Futterkosten zu decken.",
+        blocks: {
+          payment_amounts_and_intervals: {
+            title: "Betrag der Spende",
+          },
+        },
+        amount_descriptions: [
+        {
+          "if": "paymentType() == onetime",
+          "then": [
+            {
+              "if": "amount() == 25",
+              "then": "1 Futtersack"
+            },
+            {
+              "if": "amount() == 50",
+              "then": "2 Futtersäcke"
+            },
+            {
+              "if": "amount() == 75",
+              "then": "3 Futtersäcke"
+            }
+          ]
+        }
+        ]
+      }
+    },
+    debug: <%= Rails.env.development? %>,
+    slots: {
+      profile_form_end: [{
+        component: "field",
+        type: "checkbox",
+        name: "stored_customer_patenschaft",
+        text: "stored_customer_patenschaft",
+      },
+    ]},
+    language: 'de',
+    showStoredCustomerSalutation: false,
+    purpose: "Pferdefutter",
+    showStoredCustomerStreetNumber: false,
+    showStoredCustomerStreet2: false,
+    countries: ["Schweiz", "Deutschland", "Österreich"],
+    paymentFormPrefill: {
+      stored_customer_country: "Schweiz",
+      stored_customer_patenschaft: false,
+    },
+    paymentTypes: ["onetime"],
+    amounts: [
+      {
+        "if": "paymentType() == onetime",
+        "then": [25,50,75],
+      }
+    ]
+  });
+
+  //raiseNow payment complete
+  window.rnw.tamaro.events["paymentComplete"].subscribe(function(event) {
+    //paymentComplete
+    //console.log("payment complete");
+
+     var amount_just_paid = event.data.api.transactionInfo.amount;
+     var transaction_id = event.data.api.transactionInfo.epp_transaction_id;
+     var epayment_status = event.data.api.transactionInfo.epayment_status;
+
+     var first_name = event.data.api.transactionInfo.stored_customer_firstname;
+     var last_name = event.data.api.transactionInfo.stored_customer_lastname;
+     var email = event.data.api.transactionInfo.stored_customer_email;
+     var datatrans_status = event.data.api.transactionInfo.datatrans_status;
+
+     if(epayment_status === "success"){
+
+
+    //   gtag('event', 'conversion', {
+    //       'send_to': 'AW-10825069590/rEa-CIPVuqIDEJbo5ako',
+    //       'transaction_id': transaction_id
+    //   });
+
+    //   gtag('event', 'payment_successful', {
+    //    'event_category' : 'bbb',
+    //    'event_label' : 'ccc'
+    //  });
+
+     }
+  });
+
+</script>
