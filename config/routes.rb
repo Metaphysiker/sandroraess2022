@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :veganuary_items
   resources :roles
   devise_for :users
   localized do

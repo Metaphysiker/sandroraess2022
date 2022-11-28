@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @veganuary_item %>
+
+<div>
+  <%= link_to "Edit this veganuary item", edit_veganuary_item_path(@veganuary_item) %> |
+  <%= link_to "Back to veganuary items", veganuary_items_path %>
+
+  <%= button_to "Destroy this veganuary item", @veganuary_item, method: :delete %>
+</div>

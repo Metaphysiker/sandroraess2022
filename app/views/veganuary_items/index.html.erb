@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Veganuary items</h1>
+
+<div id="veganuary_items">
+  <% @veganuary_items.each do |veganuary_item| %>
+    <%= render veganuary_item %>
+    <p>
+      <%= link_to "Show this veganuary item", veganuary_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New veganuary item", new_veganuary_item_path %>
