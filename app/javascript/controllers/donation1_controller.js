@@ -10,10 +10,13 @@ export default class extends Controller {
   static values = {
     width: Number,
     titleSection: Object,
-    donateFoodSection: Object
+    donateFoodSection: Object,
+    bagsImageUrl: String,
+    wizardImageUrl: String
   }
 
   connect() {
+    console.log(this.bagsImageUrlValue);
 
     this.donateFoodSectionValue = {
 
@@ -24,7 +27,8 @@ export default class extends Controller {
 
       this.setSvg()
       .then(() => this.appendTitleSection())
-      .then(() => this.appendDonateFoodSection());
+      .then(() => this.appendDonateFoodSection())
+      .then(() => this.adjustHeightOfSvg());
 
     });
 
@@ -45,9 +49,9 @@ export default class extends Controller {
        svg = d3.select("#svgField")
       .append("svg")
       .attr("width", self.widthValue)
-      .attr("height", 500)
-      .append("g")
-      .attr("transform", `translate(${0}, ${0})`);
+      .attr("height", 100);
+      //.append("g")
+      //.attr("transform", `translate(${0}, ${0})`);
 
       final_resolve(svg);
 
@@ -88,6 +92,7 @@ export default class extends Controller {
       };
 
       console.log(self.titleSectionValue);
+
       final_resolve(self.titleSectionValue);
     })
 
@@ -108,8 +113,14 @@ export default class extends Controller {
         </strong>
         </p>
         <p>
-        <a class="btn btn-primary" href="#" role="button">Ich kaufe 4 Futtersäcke für Wizard</a>
+          <img src="${self.wizardImageUrlValue}" class="img-fluid">
+        </p>
+        <p>
+          <img src="${self.bagsImageUrlValue}" class="img-fluid">
+        </p>
 
+        <p>
+          <a class="btn btn-primary" href="#" role="button">Ich kaufe 4 Futtersäcke für Wizard</a>
         </p>
       `;
 
@@ -138,21 +149,45 @@ export default class extends Controller {
 
   }
 
-  calculateHeightOf(html){
+    calculateHeightOf(html){
 
-  var self = this;
+    var self = this;
 
-  return new Promise(function(final_resolve, final_reject){
+    return new Promise(function(final_resolve, final_reject){
 
-    self.calculateHeightOfTarget.innerHTML = html;
-    self.calculateHeightOfTarget.style.width = self.standardWidthPercentageValue + "%";
+      self.calculateHeightOfTarget.innerHTML = html;
+      self.calculateHeightOfTarget.style.width = self.standardWidthPercentageValue + "%";
 
-    setTimeout(() => {
-        //final_resolve(self.calculateHeightOfTarget.getBoundingClientRect().height)
-        final_resolve(self.calculateHeightOfTarget.offsetHeight + 10)
-      }, 150);
+      setTimeout(() => {
+          let calculated_height = self.calculateHeightOfTarget.offsetHeight + 10;
+          //final_resolve(self.calculateHeightOfTarget.getBoundingClientRect().height)
+          //it appears that visible still takes up space, so empty after"
+          self.calculateHeightOfTarget.innerHTML = "";
 
-  })
-}
+          final_resolve(calculated_height);
+        }, 100);
+
+    })
+  }
+
+  adjustHeightOfSvg(){
+
+        var self = this;
+
+        return new Promise(function(final_resolve, final_reject){
+
+          console.log(self.titleSectionValue.height + self.donateFoodSectionValue.height);
+
+          console.log(svg.style)
+
+          svg
+          .transition()
+          .duration(10)
+          .attr('height', self.titleSectionValue.height + self.donateFoodSectionValue.height)
+
+          final_resolve("");
+        })
+
+  }
 
 }
