@@ -155,6 +155,10 @@ export default class extends Controller {
 
     return new Promise(function(final_resolve, final_reject){
 
+      var html_string = `
+
+      `;
+
      svg.append("foreignObject")
       .attr('x', 0)
       .attr('y', self.titleSectionValue.height)
