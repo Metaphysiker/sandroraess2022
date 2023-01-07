@@ -12,11 +12,11 @@ export default class extends Controller {
     titleSection: Object,
     donateFoodSection: Object,
     bagsImageUrl: String,
-    wizardImageUrl: String
+    wizardImageUrl: String,
+    schubkarreImageUrl: String
   }
 
   connect() {
-    console.log(this.bagsImageUrlValue);
 
     this.donateFoodSectionValue = {
 
@@ -147,6 +147,24 @@ export default class extends Controller {
 
     })
 
+  }
+
+  appendSchubkarre(){
+
+    var self = this;
+
+    return new Promise(function(final_resolve, final_reject){
+
+     svg.append("foreignObject")
+      .attr('x', 0)
+      .attr('y', self.titleSectionValue.height)
+      .attr('width', self.widthValue)
+      .attr('height', calculated_height)
+      .append("xhtml:div")
+      .html(html_string);
+
+      final_resolve("")
+    })
   }
 
     calculateHeightOf(html){
