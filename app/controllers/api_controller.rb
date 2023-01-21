@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  protect_from_forgery except: [:sync_work_time]
+  protect_from_forgery except: [:sync_work_time, :sync_work_times]
 
   def work_times
     @work_times = WorkTime.all
@@ -14,6 +14,13 @@ class ApiController < ApplicationController
     work_time = WorkTime.createOrUpdate(work_time_params)
 
     render json: work_time
+  end
+
+  def sync_work_times
+
+    @work_times = WorkTime.all
+
+    render json: @work_times
   end
 
   private
