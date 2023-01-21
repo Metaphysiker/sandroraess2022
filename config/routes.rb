@@ -10,9 +10,11 @@ Rails.application.routes.draw do
     get 'support', to: "static_pages#support", as: "support"
   end
   get 'static_pages/welcome'
+  get 'static_pages/test_site'
 
   namespace :api do
     get 'work_times'
+    post 'sync_work_time'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

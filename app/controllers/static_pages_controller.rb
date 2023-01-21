@@ -20,4 +20,8 @@ class StaticPagesController < ApplicationController
   def support
 
   end
+
+  def test_site
+
+  end
 end

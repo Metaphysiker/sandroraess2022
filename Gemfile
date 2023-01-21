@@ -12,6 +12,8 @@ gem 'rubytree'
 gem 'meta-tags'
 gem 'mini_racer'
 gem "terser"
+gem 'rack-cors'
+
 
 
 

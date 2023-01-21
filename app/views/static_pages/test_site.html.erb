@@ -1,0 +1,32 @@
+<div class="container">
+<p>
+  Check if upload_work_times works
+</p>
+
+</div>
+
+<script>
+
+  fetch('http://localhost:3000/api/work_times')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
+    const work_time = { work_time: {content: "xxTestmaniahaha", globalWorkTimeId: "jxadfadfafdfafadsaeerererer", updated_at: new Date() } };
+
+fetch('http://localhost:3000/api/sync_work_time', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(work_time),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+</script>
