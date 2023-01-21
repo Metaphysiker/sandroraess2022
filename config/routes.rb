@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'work_times'
     post 'sync_work_time'
+    post 'sync_work_times'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
