@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :work_times
   resources :veganuary_items
   resources :roles
   devise_for :users
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
   end
   get 'static_pages/welcome'
 
+  namespace :api do
+    get 'work_times'
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

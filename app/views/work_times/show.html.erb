@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @work_time %>
+
+<div>
+  <%= link_to "Edit this work time", edit_work_time_path(@work_time) %> |
+  <%= link_to "Back to work times", work_times_path %>
+
+  <%= button_to "Destroy this work time", @work_time, method: :delete %>
+</div>
