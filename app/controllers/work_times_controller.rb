@@ -3,7 +3,7 @@ class WorkTimesController < ApplicationController
 
   # GET /work_times or /work_times.json
   def index
-    @work_times = WorkTime.all
+    @work_times = WorkTime.all.order(created_at: :desc)
   end
 
   # GET /work_times/1 or /work_times/1.json

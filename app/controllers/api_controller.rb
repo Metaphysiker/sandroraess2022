@@ -18,6 +18,16 @@ class ApiController < ApplicationController
 
   def sync_work_times
 
+    puts "SYNC_WORK_TIMES"
+    puts params["_json"]
+    puts params["_json"].class.name
+    puts params["_json"][0]
+
+    params["_json"].each do |element|
+      new_work_time = WorkTime.new(element.permit(:minutes, :content, :deleted, :globalWorkTimeId, :created_at, :updated_at))
+      new_work_time.save
+    end
+
     @work_times = WorkTime.all
 
     render json: @work_times
@@ -25,6 +35,6 @@ class ApiController < ApplicationController
 
   private
   def work_time_params
-    params.require(:work_time).permit(:minutes, :content, :deleted, :globalWorkTimeId, :updated_at)
+    params.require(:work_time).permit(:minutes, :content, :deleted, :globalWorkTimeId, :created_at, :updated_at)
   end
 end
