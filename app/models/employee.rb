@@ -3,7 +3,7 @@ class Employee < ApplicationRecord
   def self.createOrUpdate(employee_params)
     #check if work time exists
 
-    employees_with_global_employee_ids = Employee.where(globalEmployeeId: employee_params["global_employee_id"])
+    employees_with_global_employee_ids = Employee.where(global_employee_id: employee_params["global_employee_id"])
     employee = nil
 
     if employees_with_global_employee_ids.empty?

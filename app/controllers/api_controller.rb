@@ -30,7 +30,7 @@ class ApiController < ApplicationController
   def sync_employees
 
     params["_json"].each do |element|
-      WorkTime.createOrUpdate(element.permit(:first_name, :last_name, :deleted, :global_employee_id, :created_at, :updated_at))
+      Employee.createOrUpdate(element.permit(:first_name, :last_name, :deleted, :global_employee_id, :created_at, :updated_at))
     end
 
     @employees = Employee.where(deleted: false)
