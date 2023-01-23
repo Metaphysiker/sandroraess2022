@@ -32,17 +32,19 @@
     ];
 
 
-
-        const employee = [
+        var now = new Date();
+        const employees = [
           {
-            "first_name": "Manny",
-            "last_name": "Yolo",
-            "global_employee_id": "45445rrtrt",
+            "first_name": "Manu",
+            "last_name": "Yoel",
+            "global_employee_id": "xxxx45445rrtrtx",
+            "deleted": false,
             "created_at": "2023-01-21T21:31:39.2000000Z",
-            "updated_at": "2023-01-21T21:31:49.2000000Z"
+            "updated_at": now.toISOString()
           }
         ];
 
+/*
 fetch('http://localhost:3000/api/sync_work_times', {
   method: 'POST', // or 'PUT'
   headers: {
@@ -57,13 +59,13 @@ fetch('http://localhost:3000/api/sync_work_times', {
   .catch((error) => {
     console.error('Error:', error);
   });
-
+*/
   fetch('http://localhost:3000/api/sync_employees', {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(employee),
+    body: JSON.stringify(employees),
   })
     .then((response) => response.json())
     .then((data) => {

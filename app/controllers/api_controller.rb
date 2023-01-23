@@ -28,7 +28,6 @@ class ApiController < ApplicationController
   end
 
   def sync_employees
-
     params["_json"].each do |element|
       Employee.createOrUpdate(element.permit(:first_name, :last_name, :deleted, :global_employee_id, :created_at, :updated_at))
     end
