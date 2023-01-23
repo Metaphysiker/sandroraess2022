@@ -19,14 +19,23 @@ class ApiController < ApplicationController
   def sync_work_times
 
     params["_json"].each do |element|
-      #new_work_time = WorkTime.new(element.permit(:minutes, :content, :deleted, :globalWorkTimeId, :created_at, :updated_at))
-      #new_work_time.save
-      WorkTime.createOrUpdate(element.permit(:minutes, :content, :deleted, :globalWorkTimeId, :created_at, :updated_at))
+      WorkTime.createOrUpdate(element.permit(:minutes, :content, :deleted, :globalWorkTimeId, :created_at, :updated_at, :employee_global_employee_id))
     end
 
     @work_times = WorkTime.where(deleted: false)
 
     render json: @work_times
+  end
+
+  def sync_employees
+
+    params["_json"].each do |element|
+      WorkTime.createOrUpdate(element.permit(:first_name, :last_name, :deleted, :global_employee_id, :created_at, :updated_at))
+    end
+
+    @employees = Employee.where(deleted: false)
+
+    render json: @employees
   end
 
   private

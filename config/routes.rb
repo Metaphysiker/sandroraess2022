@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :employees
   resources :work_times
   resources :veganuary_items
   resources :roles
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     get 'work_times'
     post 'sync_work_time'
     post 'sync_work_times'
+    post 'sync_employees'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

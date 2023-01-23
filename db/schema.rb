@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_21_074840) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_170632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_074840) do
     t.string "slug"
     t.text "modified_content", default: ""
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
+    t.string "global_employee_id", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -109,6 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_074840) do
     t.string "globalWorkTimeId", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "employee_global_employee_id", default: ""
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
