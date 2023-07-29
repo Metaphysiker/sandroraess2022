@@ -13,13 +13,16 @@
           <%= link_to Article.model_name.human(count: 2), articles_path, class: "nav-link text-white" %>
         </li>
         <% if false %>
-        <li class="nav-item">
-          <%= link_to t("support"), support_path, class: "nav-link text-white" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to t("support"), support_path, class: "nav-link text-white" %>
+          </li>
         <% end %>
         <li class="nav-item">
           <%= link_to t("contact"), contact_path, class: "nav-link text-white" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Web-Applikationen", "https://web-applikationen.sandro-raess.ch/" , class: "nav-link text-white"%>
+        </li>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
